@@ -18,10 +18,7 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  if(target === 8) {
-    // debugger;  
-  }
-  
+
   if(this.value === target) {
     return true;
   }
@@ -45,4 +42,10 @@ treeMethods.contains = function(target) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ 
+ Answer:
+ 
+  addChild: O(n)
+  contains: O(n)
+ 
  */

@@ -37,16 +37,12 @@ Graph.prototype.removeNode = function(name) {
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
-  // if (this.storage[fromNode]['name'] === undefined || this.storage[toNode]['name'] === undefined) {
-  //   debugger;  
-  // } 
-  
   return this.storage[fromNode].connection.includes(toNode);
 };
 
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
-  this.storage[fromNode].connection.push(this.storage[toNode]['name']);
+  this.storage[fromNode].connection.push(this.storage[toNode]['name']); 
   this.storage[toNode].connection.push(this.storage[fromNode]['name']);
 };
 
@@ -67,12 +63,35 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
   // loop over everything in storage
+  for(key in this.storage) {
+    // if(this.storage[key]['name'] === )
+    cb(this.storage[key]['name']); // addEdge(this.storage[key] -- a node, 5)
+  }
   // for each node invoce cb;
   
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
- */
+ 
+ Answer:
+
+  addNode: O(1)
+
+  contains: O(n)
+
+  removeNode: O(n**2)
+
+  hasEdge: O(n)
+
+  addEdge: O(n)
+
+  removeEdge: O(n)
+
+  forEachNode: O(n)
+
+*/
+ 
+
 
 
