@@ -40,5 +40,17 @@ describe('tree', function() {
     expect(tree.contains(7)).to.equal(true);
     expect(tree.contains(8)).to.equal(true);
   });
+  
+  it('should remove children from the tree with removeChild method', function() {
+    var testTree = Tree(7);
+    testTree.addChild(8);
+    tree.addChild(5);
+    tree.addChild(6);
+
+    tree.children[0].addChild(7);
+    tree.children[0].children[0].addChild(8);
+    expect(tree.children[0].removeChild(7)).to.eql(testTree);
+    expect(tree.children[0].children).to.eql([]);
+  });
 
 });

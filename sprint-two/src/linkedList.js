@@ -2,10 +2,12 @@ var LinkedList = function() { // (head, tail)
   var list = {};
   list.head = null; // head
   list.tail = null; // value
+  
   list.addToTail = function(value) { 
     let newTail = Node(value);
     if (this.tail !== null) {
       this.tail.next = newTail; 
+      newTail.previous = this.tail;
     }
     this.tail = newTail;
     if (this.head === null) {
@@ -18,19 +20,22 @@ var LinkedList = function() { // (head, tail)
     // the new first link is the new head
     let oldHead = this.head;
     this.head = oldHead.next;
+    if (this.head !== null) {
+      this.head.previous = null;
+    }
     return oldHead.value;
   };
 
   list.contains = function(target) {
     let node;
-    if(arguments.length === 1) {
+    if (arguments.length === 1) {
       node = this.head;
     } else {
       node = arguments[1];
     }
     
-    if(node.value !== target) {
-      if(node.next !== null) {
+    if (node.value !== target) {
+      if (node.next !== null) {
         return list.contains(target, node.next);
       } else {
         return false;
@@ -40,6 +45,17 @@ var LinkedList = function() { // (head, tail)
     }
     
   };
+  
+  list.removeTail = function() {
+    let oldTail = this.tail;
+    this.tail = oldTail.previous;
+    if (this.tail !== null) {
+      this.tail.next = null;
+    }
+    return oldTail.value;
+  };
+  
+  
   return list;
 };
 
@@ -48,6 +64,7 @@ var Node = function(value) {
 
   node.value = value;
   node.next = null; // change 
+  node.previous = null;
 
   return node;
 };
@@ -60,5 +77,6 @@ var Node = function(value) {
     addToTail: O(1)
     removeHead: O(1)
     contains: O(n)
+    removeTail: O(1)
     Node: O(1)
  */
