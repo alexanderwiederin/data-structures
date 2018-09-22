@@ -57,15 +57,43 @@ BinarySearchTree.prototype.depthFirstLog = function(cb) {
   
   cb(this.value);
   
-  if(this.left !== null) {
+  if (this.left !== null) {
     this.left.depthFirstLog(cb);
   }
   
-  if(this.right !== null) {
+  if (this.right !== null) {
     this.right.depthFirstLog(cb);
   }
    
 };
+
+BinarySearchTree.prototype.breadthFirstLog = function() {
+  var temp = []; // [5]; 
+  var output = [];// [];
+  debugger; 
+  
+  temp.push(this.value);
+  
+  
+  
+  if (this.left) {
+    temp = temp.concat(this.left.breadthFirstLog());
+  }
+  
+  if (this.right) {
+    temp = temp.concat(this.right.breadthFirstLog());
+  }
+  
+  output = output.concat(temp);
+  return output;
+};
+
+// i | temp                                 |   output    |
+// -------------------------------------------
+// 0 | [5, [2 ,7]] => [[2,7]]               |   [5]    |
+// 1 | [2 , [1 , 3]] => [[1,3]]             |   output    |
+// 2 | temp                 |   output    |
+// 3 | temp                 |   output    |
 
 
 /*

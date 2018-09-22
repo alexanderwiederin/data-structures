@@ -38,4 +38,15 @@ describe('binarySearchTree', function() {
     
     expect(array).to.eql([5, 2, 3, 7]);
   });
+  
+  it('should have a working breadthFirstLog method', function() {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(6);
+    binarySearchTree.insert(8);
+    expect(binarySearchTree.breadthFirstLog()).to.eql([5, 2, 7, 1, 3, 6, 7]);
+    
+  })
 });
