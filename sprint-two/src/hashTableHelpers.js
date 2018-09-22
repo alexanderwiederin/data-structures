@@ -11,13 +11,13 @@
 //   limitedArray.set(3, 'hi');
 //   limitedArray.get(3); // returns 'hi'
 
-var LimitedArray = function(limit) {
-  var storage = []; // [{w:z} ... ];
+var LimitedArray = function(limit) { // === hash._storage
+  var storage = []; // [[[w,z],[x,y]] ... ];
 
   var limitedArray = {};
   limitedArray.get = function(index) {
     checkLimit(index);
-    return storage[index];
+    return storage[index]; // a bucket
   };
   limitedArray.set = function(index, value) {
     checkLimit(index);
@@ -48,7 +48,7 @@ var getIndexBelowMaxForKey = function(str, max) {
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
     hash = (hash << 5) + hash + str.charCodeAt(i);
-    hash = hash & hash; // Convert to 32bit integer
+    hash = hash & hash; // Convert to 32bit integer 8 => 001 
     hash = Math.abs(hash);
   }
   return hash % max;
@@ -56,4 +56,11 @@ var getIndexBelowMaxForKey = function(str, max) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ 
+    Answers: 
+      get: Constant O(1)
+      set: Constant O(1)
+      each: Linear O(n)
+      checkLimit: Constant O(1)
+      getIndexBelowMaxForKey: O(n)
  */

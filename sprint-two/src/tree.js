@@ -61,7 +61,14 @@ treeMethods.removeChild = function(value) {
   
 };
 
-
+treeMethods.traverse = function(cb) {
+  cb(this.value);
+  if (this.children.length) {
+    for (var i = 0; i < this.children.length; i++) {
+      this.children[i].traverse(cb);
+    }
+  }
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
@@ -71,5 +78,6 @@ treeMethods.removeChild = function(value) {
   addChild: O(n)
   contains: O(n)
   removeChild: O(n)
+  traverse: O(n)
  
  */
